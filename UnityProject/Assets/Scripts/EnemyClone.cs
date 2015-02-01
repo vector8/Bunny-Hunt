@@ -22,28 +22,31 @@ public class EnemyClone : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		spawnTimer -= Time.deltaTime;
-		
-		if(sundial.day > day)
+		if(player.activeSelf)
 		{
-			day = sundial.day;
-			avgSpawnTime = Mathf.Max(startingAverageSpawnTime * Mathf.Pow((1.0f / spawnDivisor), sundial.day - 1), 0.5f);
-		}
+			spawnTimer -= Time.deltaTime;
 		
-		if(spawnTimer <= 0)
-		{
-			float screenWidth, screenHeight;
-			screenHeight = Camera.main.orthographicSize;
-			screenWidth = Camera.main.aspect * screenHeight;
+			if(sundial.day > day)
+			{
+				day = sundial.day;
+				avgSpawnTime = Mathf.Max(startingAverageSpawnTime * Mathf.Pow((1.0f / spawnDivisor), sundial.day - 1), 0.5f);
+			}
+		
+			if(spawnTimer <= 0)
+			{
+				float screenWidth, screenHeight;
+				screenHeight = Camera.main.orthographicSize;
+				screenWidth = Camera.main.aspect * screenHeight;
 			
-			Vector3 spawnPosition = new Vector3(Random.Range(-screenWidth, screenWidth), Random.Range(-screenHeight, screenHeight), 0);
+				Vector3 spawnPosition = new Vector3(Random.Range(-screenWidth, screenWidth), Random.Range(-screenHeight, screenHeight), 0);
 			
-			Enemy instance;
-			instance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity) as Enemy;
-			instance.player = player;
-			instance.sundial = sundial;
+				Enemy instance;
+				instance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity) as Enemy;
+				instance.player = player;
+				instance.sundial = sundial;
 			
-			spawnTimer = Random.Range(avgSpawnTime * 0.5f, avgSpawnTime * 1.5f);
+				spawnTimer = Random.Range(avgSpawnTime * 0.5f, avgSpawnTime * 1.5f);
+			}
 		}
 	}
 }
