@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerTrigger : MonoBehaviour
 {
 	public Sundial sundial;
+	public GameController gameController;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -19,7 +20,14 @@ public class PlayerTrigger : MonoBehaviour
 			{
 				// eat the enemy
 				Destroy(other.gameObject);
+				// gain point
+				gameController.hunters++;
 			}
+		} else
+		{
+			// eat the carrot
+			Destroy(other.gameObject);
+			gameController.carrots++;
 		}
 	}
 	
