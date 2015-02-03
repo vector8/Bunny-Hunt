@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
-			transform.localScale = new Vector3(Mathf.Sign(transform.localScale.x) * 1.0f, 1.0f, 1.0f);
+			transform.localScale = new Vector3(Mathf.Sign(transform.localScale.x) * 1.5f, 1.5f, 1.0f);
 		}
 		
 		anim.SetBool(mutatedHash, !sundial.isDayTime());
