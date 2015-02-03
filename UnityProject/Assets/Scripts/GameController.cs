@@ -43,10 +43,12 @@ public class GameController : MonoBehaviour {
 
 				if (bDayTime)
 				{
-					txtDayMsg.text = "Day " + sundial.day;
+					txtDayMsg.text = "Day " + sundial.day + "\n"
+									+ "Run!";
 				} else
 				{
-					txtDayMsg.text = "Night " + sundial.day;
+					txtDayMsg.text = "Night " + sundial.day + "\n"
+									+ "Hunt!";
 				}
 			}
 
