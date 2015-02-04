@@ -1,41 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CarrotClone : MonoBehaviour
-{
+public class CarrotClone : MonoBehaviour {
 	private float spawnTimer;
-	private float avgSpawnTime;
-	public float startingAverageSpawnTime;
-	public float spawnDivisor;
-	public GameObject carrotPrefab;
-	public GameObject player;
-	
+	public float avgSpawnTime=4;
+	public Sundial sundial;
+	public Carrot carrot;
+	private float spawnScreenWidth, spawnScreenHeight, carrotWidth, carrotHeight;
 	// Use this for initialization
-	void Start()
-	{
-		avgSpawnTime = startingAverageSpawnTime;
+	void Start () {
 		spawnTimer = Random.Range(avgSpawnTime * 0.5f, avgSpawnTime * 1.5f);
+		carrotWidth = carrot.renderer.bounds.extents.x; 
+		carrotHeight = carrot.renderer.bounds.extents.y;		
+		Vector3 upperCorner = new Vector3 (Screen.width, Screen.height, 0.0f);
+		spawnScreenHeight = Camera.main.orthographicSize - carrotHeight;
+		spawnScreenWidth = (Camera.main.aspect * spawnScreenHeight) - carrotWidth;
 	}
 	
 	// Update is called once per frame
-	void Update()
-	{
-		if(player.activeSelf)
+	void Update () {
+		spawnTimer -= Time.deltaTime;
+		if (spawnTimer < 0)
 		{
-			spawnTimer -= Time.deltaTime;
-			
-			if(spawnTimer <= 0)
+			if (sundial.isDayTime())
 			{
-				float screenWidth, screenHeight;
-				screenHeight = Camera.main.orthographicSize;
-				screenWidth = Camera.main.aspect * screenHeight;
+				Vector3 spawnPosition = new Vector3(Random.Range(-spawnScreenWidth, spawnScreenWidth), Random.Range(-spawnScreenHeight, spawnScreenHeight), 0);
 				
-				Vector3 spawnPosition = new Vector3(Random.Range(-screenWidth, screenWidth), Random.Range(-screenHeight, screenHeight), 0);
-				
-				Instantiate(carrotPrefab, spawnPosition, Quaternion.identity);
-				
-				spawnTimer = Random.Range(avgSpawnTime * 0.5f, avgSpawnTime * 1.5f);
+				Carrot clone;
+				clone = Instantiate(carrot, spawnPosition, Quaternion.identity) as Carrot;
+				clone.sundial=sundial;
 			}
+			spawnTimer = Random.Range(avgSpawnTime * 0.5f, avgSpawnTime * 1.5f);
 		}
 	}
 }
