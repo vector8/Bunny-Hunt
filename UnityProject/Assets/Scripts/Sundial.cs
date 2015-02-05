@@ -6,11 +6,18 @@ public class Sundial : MonoBehaviour
 	private float currentTime;
 	public int day = 1;
 	public GameObject sundialUI;
+	public GameObject dial;
 	
 	// Use this for initialization
 	void Start()
 	{
-		
+		float screenWidth, screenHeight, dialWidth, dialHeight;
+		screenHeight = Camera.main.orthographicSize;
+		screenWidth = Camera.main.aspect * screenHeight;
+		dialWidth = dial.renderer.bounds.extents.x; 
+		dialHeight = dial.renderer.bounds.extents.y;
+
+		this.transform.position = new Vector3(screenWidth - dialWidth, screenHeight - dialHeight, 0);
 	}
 	
 	// Update is called once per frame

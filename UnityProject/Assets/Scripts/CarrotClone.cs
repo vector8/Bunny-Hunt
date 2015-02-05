@@ -12,7 +12,6 @@ public class CarrotClone : MonoBehaviour {
 		spawnTimer = Random.Range(avgSpawnTime * 0.5f, avgSpawnTime * 1.5f);
 		carrotWidth = carrot.renderer.bounds.extents.x; 
 		carrotHeight = carrot.renderer.bounds.extents.y;		
-		Vector3 upperCorner = new Vector3 (Screen.width, Screen.height, 0.0f);
 		spawnScreenHeight = Camera.main.orthographicSize - carrotHeight;
 		spawnScreenWidth = (Camera.main.aspect * spawnScreenHeight) - carrotWidth;
 	}
