@@ -19,12 +19,14 @@ public class Hunger : MonoBehaviour {
 	void FixedUpdate () {
 		if(hunger > 0)
 		{
-			hunger -= Time.deltaTime * hungerFactor;
-			if(hunger < 0)
-			{
-				hunger = 0;
-			}	
-			hungerBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, hunger * 3);
+			if(player.activeSelf){
+					hunger -= Time.deltaTime * hungerFactor;
+				if(hunger < 0)
+				{
+					hunger = 0;
+				}	
+				hungerBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, hunger * 3);
+			}
 		} else
 		{
 			player.SetActive(false);
