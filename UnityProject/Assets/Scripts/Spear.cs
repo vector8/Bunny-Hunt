@@ -12,6 +12,7 @@ public class Spear : MonoBehaviour
 	public float maxLifeTime;
 	public float moveSpeed;
 	public GameObject player;
+	public GameController gameController;
 	
 	// Use this for initialization
 	void Start()
@@ -41,9 +42,14 @@ public class Spear : MonoBehaviour
 		
 		if(Vector3.Distance(player.transform.position, transform.position) < 0.1)
 		{
-			// TODO: kill player here
-			player.SetActive(false);
-			
+			if(!gameController.IsReviving()){
+				player.SetActive(false);
+				gameController.GameOverDisplay();
+			}else{
+				Debug.Log("resetting revival");
+				StartCoroutine(gameController.Wait());
+				gameController.Reviving(false);
+			}
 			// remove this spear
 			Destroy(gameObject);
 		} else if(finished)
