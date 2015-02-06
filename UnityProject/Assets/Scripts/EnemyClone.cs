@@ -3,14 +3,17 @@ using System.Collections;
 
 public class EnemyClone : MonoBehaviour
 {
-	private float spawnTimer;
 	private float avgSpawnTime;
 	private int day = 1;
+	private float spawnTimer;
+
 	public float startingAverageSpawnTime;
 	public float spawnDivisor;
-	public Sundial sundial;
 	public Enemy enemyPrefab;
+	public GameController gameController;
 	public GameObject player;
+	public Sundial sundial;
+
 
 	// Use this for initialization
 	void Start()
@@ -44,6 +47,7 @@ public class EnemyClone : MonoBehaviour
 				instance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity) as Enemy;
 				instance.player = player;
 				instance.sundial = sundial;
+				instance.gameController = gameController;
 			
 				spawnTimer = Random.Range(avgSpawnTime * 0.5f, avgSpawnTime * 1.5f);
 			}

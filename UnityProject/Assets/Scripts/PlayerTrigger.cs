@@ -12,23 +12,30 @@ public class PlayerTrigger : MonoBehaviour
 		//Debug.Log(other.tag);
 		if(other.tag == "Enemy")
 		{
-			if(sundial.isDayTime())
-			{
-				// kill the player
-				gameObject.SetActive(false);
-			} else
-			{
-				// eat the enemy
-				Destroy(other.gameObject);
-				// gain point and update hunger
-				gameController.hunters++;
-				if(hungerController.hunger < 70)
+			if(!gameController.IsReviving()){
+				if(sundial.isDayTime())
 				{
-					hungerController.hunger += 30;
+					// kill the player
+					gameObject.SetActive(false);
+					gameController.GameOverDisplay();
 				} else
 				{
-					hungerController.hunger = 100;
+					// eat the enemy
+					Destroy(other.gameObject);
+					// gain point and update hunger
+					gameController.hunters++;
+					if(hungerController.hunger < 70)
+					{
+						hungerController.hunger += 30;
+					} else
+					{
+						hungerController.hunger = 100;
+					}
 				}
+			}else{
+				Debug.Log("resetting revival");
+				StartCoroutine(gameController.Wait());
+				gameController.Reviving(false);
 			}
 		} else if(other.tag == "Carrot")
 		{

@@ -17,19 +17,20 @@ public class Hunger : MonoBehaviour {
 	
 	// Update is called once per physics time unit
 	void FixedUpdate () {
-		if(hunger > 0)
+		if(player.activeSelf)
 		{
-			if(player.activeSelf){
-					hunger -= Time.deltaTime * hungerFactor;
+			if(hunger > 0)
+			{
+				hunger -= Time.deltaTime * hungerFactor;
 				if(hunger < 0)
 				{
 					hunger = 0;
 				}	
 				hungerBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, hunger * 3);
+			} else
+			{
+				player.SetActive(false);
 			}
-		} else
-		{
-			player.SetActive(false);
 		}
 	}
 }

@@ -13,12 +13,12 @@ public class Enemy : MonoBehaviour
 	private float chaseTimer;
 	private float idleTimer;
 	private float currentSpeed;
-	
+
+	public GameController gameController;
 	public GameObject player;
 	public Sundial sundial;
 	public float detectionRadius;
 	public float attackDelay;
-	public Spear spearPrefab;
 	public float maxChaseTime;
 	public float runSpeed;
 	public float walkSpeed;
@@ -26,11 +26,13 @@ public class Enemy : MonoBehaviour
 	public float maxWanderRange;
 	public float minIdleTime;
 	public float maxIdleTime;
+	public Spear spearPrefab;
 	
 	// Use this for initialization
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
+
 	}
 	
 	// Update is called once per frame
@@ -197,6 +199,7 @@ public class Enemy : MonoBehaviour
 				Spear instance;
 				instance = Instantiate(spearPrefab, transform.position, rotation) as Spear;
 				instance.player = player;
+				instance.gameController = gameController;
 				
 				attacking = false;
 				anim.SetBool(attackingHash, attacking);
