@@ -1,20 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-	private Vector3 moveDirection;
-	private Vector3 targetPosition;
+	private bool jumping = false;
+	private float clickDelay;
+	private float jumpTimer;
 	private int speedHash = Animator.StringToHash("Speed");
 	private int mutatedHash = Animator.StringToHash("Mutated");
-	private float clickDelay;
-	private bool jumping = false;
-	private float jumpTimer;
 	private Animator anim;
-	
-	public float moveSpeed;
+	private Vector3 moveDirection;
+	private Vector3 targetPosition;
+
+	public float hunger = 100;
+	public float hungerFactor;
 	public float jumpSpeed;
 	public float jumpDuration;
+	public float moveSpeed;
+	public GameController gameController;
+	public Image hungerBar;
 	public Sundial sundial;
 	
 	// Use this for initialization
@@ -152,5 +157,27 @@ public class PlayerController : MonoBehaviour
 		}
 		
 		anim.SetBool(mutatedHash, !sundial.isDayTime());
+
+		if(this.gameObject.activeSelf)
+		{
+			UpdateHunger();
+		}
+	}
+
+	void UpdateHunger()
+	{
+		if(hunger > 0)
+		{
+			hunger -= Time.deltaTime * hungerFactor;
+			if(hunger < 0)
+			{
+				hunger = 0;
+			}	
+			hungerBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, hunger * 3);
+		} else
+		{
+			this.gameObject.SetActive(false);
+			gameController.GameOverDisplay();
+		}
 	}
 }

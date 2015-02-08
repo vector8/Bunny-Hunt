@@ -6,7 +6,7 @@ public class DisplayAds : MonoBehaviour {
 
 	public GameObject player;
 	public GameController gameController;
-	public Hunger hungerController;
+	public PlayerController playerController;
 
 	// Use this for initialization
 	void Start () {
@@ -48,7 +48,7 @@ public class DisplayAds : MonoBehaviour {
 	public void Revive(){
 		gameController.Reviving(true);
 		gameController.lifeAvailable = false;
-		hungerController.hunger = 100;
+		playerController.hunger = 100;
 		player.SetActive(true);
 
 		// Hide UI and start invincible counter (5s)
