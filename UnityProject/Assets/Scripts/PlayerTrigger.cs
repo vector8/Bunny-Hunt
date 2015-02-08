@@ -5,7 +5,7 @@ public class PlayerTrigger : MonoBehaviour
 {
 	public Sundial sundial;
 	public GameController gameController;
-	public Hunger hungerController;
+	public PlayerController playerController;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -24,16 +24,16 @@ public class PlayerTrigger : MonoBehaviour
 					Destroy(other.gameObject);
 					// gain point and update hunger
 					gameController.hunters++;
-					if(hungerController.hunger < 70)
+
+					if(playerController.hunger < 70)
 					{
-						hungerController.hunger += 30;
+						playerController.hunger += 30;
 					} else
 					{
-						hungerController.hunger = 100;
+						playerController.hunger = 100;
 					}
 				}
 			}else{
-				Debug.Log("resetting revival");
 				StartCoroutine(gameController.Wait());
 				gameController.Reviving(false);
 			}
@@ -43,12 +43,12 @@ public class PlayerTrigger : MonoBehaviour
 			Destroy(other.gameObject);
 			// gain point and update hunger
 			gameController.carrots++;
-			if(hungerController.hunger < 70)
+			if(playerController.hunger < 70)
 			{
-				hungerController.hunger += 30;
+				playerController.hunger += 30;
 			} else
 			{
-				hungerController.hunger = 100;
+				playerController.hunger = 100;
 			}
 
 		}

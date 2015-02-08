@@ -21,10 +21,10 @@ public class GameController : MonoBehaviour {
 	public Button btnShowAd;
 	public Sundial sundial;
 
-	private bool bDayTime = true;
-	private bool bFade = true;
-	private bool bDisplayMsg = false;
-	private bool bReviving = false;
+	private bool dayTime = true;
+	private bool fade = true;
+	private bool displayMsg = false;
+	private bool reviving = false;
 	
 	// Use this for initialization
 	void Start()
@@ -40,13 +40,13 @@ public class GameController : MonoBehaviour {
 	{
 		if(player.activeSelf)
 		{
-			if (bDayTime != sundial.isDayTime())	// if daytime has changed, update display msg
+			if (dayTime != sundial.isDayTime())	// if daytime has changed, update display msg
 			{
-				bDayTime = sundial.isDayTime();
-				bFade = true;
-				bDisplayMsg = true;
+				dayTime = sundial.isDayTime();
+				fade = true;
+				displayMsg = true;
 
-				if (bDayTime)
+				if (dayTime)
 				{
 					txtDayMsg.text = "Day " + sundial.day + "\n"
 									+ "Run!";
@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour {
 				}
 			}
 
-			if (bFade)
+			if (fade)
 			{
 				Fade();
 			}
@@ -92,24 +92,23 @@ public class GameController : MonoBehaviour {
 	public void Fade()
 	{
 		// if we try to display the msg, 
-		if(bDisplayMsg)
+		if(displayMsg)
 		{
 			txtDayMsg.CrossFadeAlpha(255, 2, false);
-			bDisplayMsg = false;
+			displayMsg = false;
 		} else
 		{
 			txtDayMsg.CrossFadeAlpha(0, 2, false);
-			bFade = false;
+			fade = false;
 		}
 	}
 
 	public void Reviving(bool isReviving){
-		Debug.Log("revival = " + isReviving);
-		bReviving = isReviving;
+		reviving = isReviving;
 	}
 
 	public bool IsReviving(){
-		return bReviving;
+		return reviving;
 	}
 
 	public IEnumerator Wait(){
