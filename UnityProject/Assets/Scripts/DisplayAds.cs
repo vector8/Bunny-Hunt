@@ -29,17 +29,14 @@ public class DisplayAds : MonoBehaviour {
 		switch (result)
 		{
 		case ShowResult.Finished:
-			Debug.Log("The ad was skipped before reaching the end.");
 			Revive();
 			break;
 		case ShowResult.Skipped:
 			if(Debug.isDebugBuild){
 				Revive();
 			}
-			Debug.Log("The ad was skipped before reaching the end.");
 			break;
 		case ShowResult.Failed:
-			Debug.LogError("The ad failed to be shown.");
 			break;
 		}
 	}
