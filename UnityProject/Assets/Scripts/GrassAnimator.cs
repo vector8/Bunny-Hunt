@@ -21,16 +21,21 @@ public class GrassAnimator : MonoBehaviour
 		float interpValue = 0.0f;
 		float currentTime = sundial.currentTime;
 		
-		if(currentTime < 7.5f)
-		{
-			currentTime += 15.0f;
-		}
-		else if(currentTime > 22.5f)
-		{
-			currentTime -= 15.0f;
-		}
+		// When currentTime is 7.5, interpValue should be 0.0
+		// When currentTime is 22.5, interpValue should be 1.0
 		
-		interpValue = (currentTime - 7.5f) / 15.0f;
+		if(currentTime > 22.5f)
+		{
+			interpValue = (37.5f - currentTime) / 15.0f;
+		}
+		else if(currentTime < 7.5f)
+		{
+			interpValue = (7.5f - currentTime) / 15.0f;
+		}
+		else
+		{
+			interpValue = (currentTime - 7.5f) / 15.0f;
+		}
 		
 		renderer.color = Color.Lerp(dayColor, nightColor, interpValue);
 	}
