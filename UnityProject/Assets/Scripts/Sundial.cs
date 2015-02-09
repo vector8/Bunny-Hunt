@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Sundial : MonoBehaviour
 {
-	private float currentTime;
+	public float currentTime;
 	public int day = 1;
 	public GameObject sundialUI;
 	public GameObject player;
