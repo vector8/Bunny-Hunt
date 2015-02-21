@@ -33,6 +33,7 @@ public class Pause : MonoBehaviour {
 	}
 
 	public void ExitGame(){
+		Time.timeScale=1;
 		Application.LoadLevel("TitleScreen");
 	}
 }
