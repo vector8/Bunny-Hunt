@@ -47,6 +47,12 @@ public class DisplayAds : MonoBehaviour {
 		gameController.lifeAvailable = false;
 		playerController.hunger = 100;
 		player.SetActive(true);
+		
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach(GameObject enemy in enemies)
+		{
+			Destroy(enemy);
+		}		
 
 		// Hide UI and start invincible counter (5s)
 		//StartCoroutine(gameController.HideGameOverDisplay());

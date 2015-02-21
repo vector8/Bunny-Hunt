@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
 	private Animator anim;
 	private Vector3 moveDirection;
 	private Vector3 targetPosition;
-	private bool canMove = true;
 
 	public float hunger = 100;
 	public float hungerFactor;
@@ -32,7 +31,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(canMove == true)
+		if(Time.timeScale > 0)
 		{
 			Vector3 currentPosition = transform.position;
 		
@@ -43,8 +42,8 @@ public class PlayerController : MonoBehaviour
 			{
 				jumping = (clickDelay < 0.5f);
 			}
-
-			if(jumping && canMove)
+	
+			if(jumping)
 			{
 				jumpTimer += Time.deltaTime;
 			
@@ -126,7 +125,7 @@ public class PlayerController : MonoBehaviour
 					moveDirection.z = 0;
 				}
 		
-				if((moveDirection.magnitude != 0)&& canMove)
+				if(moveDirection.magnitude != 0)
 				{
 					Vector3 scale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 					if(moveDirection.x < 0)
@@ -153,30 +152,30 @@ public class PlayerController : MonoBehaviour
 			if(!sundial.isDayTime())
 			{
 				transform.localScale = new Vector3(Mathf.Sign(transform.localScale.x) * 3.0f, 3.0f, 1.0f);
-			} else
+			} 
+			else
 			{
 				transform.localScale = new Vector3(Mathf.Sign(transform.localScale.x) * 1.5f, 1.5f, 1.0f);
 			}
 		
 			anim.SetBool(mutatedHash, !sundial.isDayTime());
-
+	
 			if(this.gameObject.activeSelf)
 			{
 				UpdateHunger();
 			}
 		}
 	}
-	void Move(){
 
-	}
-
-	public void stopMove(){
-		print("stop moving");
-		canMove = false;
-	}
-	public void resumeMove(){
-		print("resume moving");
-		canMove = true;
+	public void freeze()
+	{
+		targetPosition = transform.position;
+		moveDirection.x = 0;
+		moveDirection.y = 0;
+		moveDirection.z = 0;
+		jumping = false;
+		jumpTimer = 0;
+		clickDelay = 0.5f;
 	}
 
 	void UpdateHunger()
