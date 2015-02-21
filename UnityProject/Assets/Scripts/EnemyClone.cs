@@ -48,6 +48,7 @@ public class EnemyClone : MonoBehaviour
 				instance.player = player;
 				instance.sundial = sundial;
 				instance.gameController = gameController;
+				instance.goal = spawnPosition;
 			
 				spawnTimer = Random.Range(avgSpawnTime * 0.5f, avgSpawnTime * 1.5f);
 			}

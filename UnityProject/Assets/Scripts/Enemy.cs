@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
 	private int speedHash = Animator.StringToHash("Speed");
 	private int attackingHash = Animator.StringToHash("Attacking");
 	private Animator anim;
-	private Vector3 goal;
 	private float chaseTimer;
 	private float idleTimer;
 	private float currentSpeed;
@@ -27,6 +26,7 @@ public class Enemy : MonoBehaviour
 	public float minIdleTime;
 	public float maxIdleTime;
 	public Spear spearPrefab;
+	public Vector3 goal;
 	
 	// Use this for initialization
 	void Start ()
