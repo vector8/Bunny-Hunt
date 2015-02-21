@@ -7,10 +7,16 @@ public class DisplayAds : MonoBehaviour {
 	public GameObject player;
 	public GameController gameController;
 	public PlayerController playerController;
+	public GameObject confirmAdGUI;
+	// GameObject confirmAdGUI;
 
 	// Use this for initialization
 	void Start () {
 
+	}
+
+	public void CancelAd(){
+		confirmAdGUI.SetActive(false);
 	}
 	
 	public void DisplayAd(){
@@ -22,6 +28,11 @@ public class DisplayAds : MonoBehaviour {
 			
 			Advertisement.Show(null,options);
 		}
+		confirmAdGUI.SetActive(false);
+	}
+
+	public void ShowAdConfirmGUI(){
+		confirmAdGUI.SetActive(true);
 	}
 
 	public void HandleShowResult (ShowResult result)
@@ -57,8 +68,6 @@ public class DisplayAds : MonoBehaviour {
 		// Hide UI and start invincible counter (5s)
 		//StartCoroutine(gameController.HideGameOverDisplay());
 		gameController.HideGameOverDisplay();
-
-
 	}
 	#endregion
 }
