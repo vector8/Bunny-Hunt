@@ -38,10 +38,25 @@ public class EnemyClone : MonoBehaviour
 			if(spawnTimer <= 0)
 			{
 				float screenWidth, screenHeight;
+				float enemyWidth, enemyHeight;
+				float spawnWidth, spawnHeight;
 				screenHeight = Camera.main.orthographicSize;
-				screenWidth = Camera.main.aspect * screenHeight;
-			
-				Vector3 spawnPosition = new Vector3(Random.Range(-screenWidth, screenWidth), Random.Range(-screenHeight, screenHeight), 0);
+				screenWidth = Camera.main.aspect * screenHeight;				
+				enemyHeight = enemyPrefab.renderer.bounds.extents.y;
+				enemyWidth = enemyPrefab.renderer.bounds.extents.x;
+
+				spawnWidth = Random.Range(screenWidth, screenWidth + enemyWidth);
+				//returns 0 or 1, 0 = left side of screen, 1 = right side of screen
+				if (Random.Range(0,2) < 1){
+					spawnWidth = 0-spawnWidth;
+				}
+				spawnHeight = Random.Range(screenHeight, screenHeight + enemyHeight);
+				//returns 0 or 1, 0 = above screen, 1 = below screen
+				if (Random.Range(0,2) < 1){
+					spawnHeight = 0-spawnHeight;
+				}
+
+				Vector3 spawnPosition = new Vector3(spawnWidth, spawnHeight, 0);
 			
 				Enemy instance;
 				instance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity) as Enemy;
