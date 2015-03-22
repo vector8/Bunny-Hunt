@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AndroidImmersiveMode\Scripts\DemoScript.cs" />
+     <Compile Include="Assets\AndroidImmersiveMode\Scripts\ImmersiveModeEnabler.cs" />
      <Compile Include="Assets\GooglePlayGames\BasicApi\Achievement.cs" />
      <Compile Include="Assets\GooglePlayGames\BasicApi\DummyClient.cs" />
      <Compile Include="Assets\GooglePlayGames\BasicApi\IPlayGamesClient.cs" />
@@ -241,6 +243,7 @@
      <None Include="Assets\Plugins\Android\google-play-services_lib\res\values-de\common_strings.xml" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\res\values-lt\common_strings.xml" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\res\values-is-rIS\common_strings.xml" />
+     <None Include="Assets\AndroidImmersiveMode\Instructions\Instructions.txt" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\google-play-services_lib\res\values-tl\common_strings.xml" />
      <None Include="Assets\Editor\projsettings.txt" />
