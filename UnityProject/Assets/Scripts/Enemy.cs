@@ -197,7 +197,8 @@ public class Enemy : MonoBehaviour
 			{
 				Quaternion rotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), (player.transform.position - transform.position));
 				Spear instance;
-				instance = Instantiate(spearPrefab, transform.position, rotation) as Spear;
+				Vector3 startPos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+				instance = Instantiate(spearPrefab, startPos, rotation) as Spear;
 				instance.player = player;
 				instance.gameController = gameController;
 				
