@@ -156,11 +156,13 @@
      <Compile Include="Assets\Scripts\EnemyClone.cs" />
      <Compile Include="Assets\Scripts\Fading.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\Googleplay.cs" />
      <Compile Include="Assets\Scripts\GrassAnimator.cs" />
      <Compile Include="Assets\Scripts\Pause.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerTrigger.cs" />
      <Compile Include="Assets\Scripts\Restart.cs" />
+     <Compile Include="Assets\Scripts\ShowLeaderboard.cs" />
      <Compile Include="Assets\Scripts\Spear.cs" />
      <Compile Include="Assets\Scripts\SplashFade.cs" />
      <Compile Include="Assets\Scripts\StartGame.cs" />
