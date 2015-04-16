@@ -1,10 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+//using UnityEditor;
+using System.IO;
+
 
 public class StartGame : MonoBehaviour {
 	public GameObject TutorialPanel;
 	public Fading fading;
+	public Text builtVersion;
 
+	void Start() {
+		//#if UNITY_EDITOR
+		//	builtVersion.text = "Built Version: " + PlayerSettings.bundleVersion + "  Code: " + PlayerSettings.Android.bundleVersionCode;
+		//#endif
+	}
 	public void GameStart(){
 		//Application.LoadLevel("Main");
 		StartCoroutine(RunGame());

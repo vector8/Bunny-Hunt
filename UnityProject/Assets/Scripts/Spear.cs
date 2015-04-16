@@ -39,7 +39,9 @@ public class Spear : MonoBehaviour
 		}
 		
 		transform.position = Vector3.Lerp(originalPosition, target, u);
-		
+
+		/*
+		 * Original spear kill rabbit code, moving it to PlayerTrigger.cs
 		if(Vector3.Distance(player.transform.position, transform.position) < 0.1)
 		{
 			if(!gameController.IsReviving()){
@@ -53,6 +55,11 @@ public class Spear : MonoBehaviour
 			// remove this spear
 			Destroy(gameObject);
 		} else if(finished)
+		{
+			Destroy(gameObject);
+		}
+		*/
+		if(finished)
 		{
 			Destroy(gameObject);
 		}
