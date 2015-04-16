@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
 	private float chaseTimer;
 	private float idleTimer;
 	private float currentSpeed;
+	private GameObject alertBox;
+	private GameObject ahhhBox;
 
 	public GameController gameController;
 	public GameObject player;
@@ -39,11 +41,17 @@ public class Enemy : MonoBehaviour
 	void Update ()
 	{
 		attackTimer += Time.deltaTime;
+		alertBox = this.transform.FindChild("Alert").gameObject;
+		ahhhBox = this.transform.FindChild("Ahhh").gameObject;
 		
 		if(!attacking)
 		{
+			alertBox.SetActive(false);
+			ahhhBox.SetActive(false);
 			if(player.activeSelf && Vector3.Distance(player.transform.position, transform.position) < detectionRadius)
 			{
+				alertBox.SetActive(true);
+				ahhhBox.SetActive(false);
 				if(attackTimer >= attackDelay && sundial.isDayTime())
 				{
 					attackTimer = 0.0f;
@@ -63,12 +71,16 @@ public class Enemy : MonoBehaviour
 				
 				if(sundial.isDayTime())
 				{
+					alertBox.SetActive(true);
+					ahhhBox.SetActive(false);
 					goal = player.transform.position;
 				}
 				else
 				{
 					// get the point on the opposite side of this enemy from the player
 					// TODO: Limit running to within the screen boundary?
+					alertBox.SetActive(false);
+					ahhhBox.SetActive(true);
 					goal = (2.0f * transform.position) - player.transform.position;
 				}
 				
@@ -76,6 +88,8 @@ public class Enemy : MonoBehaviour
 			}
 			else if(idleTimer > 0.0f)
 			{
+				alertBox.SetActive(false);
+				ahhhBox.SetActive(false);
 				idleTimer -= Time.deltaTime;
 				
 				if(idleTimer <= 0.0f)

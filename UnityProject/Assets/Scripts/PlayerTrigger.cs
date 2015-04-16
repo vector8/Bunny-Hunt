@@ -9,10 +9,10 @@ public class PlayerTrigger : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		//Debug.Log(other.tag);
 		if(other.tag == "Enemy")
 		{
-			if(!gameController.IsReviving()){
+			if(!gameController.IsReviving())
+			{
 				if(sundial.isDayTime())
 				{
 					// kill the player
@@ -33,7 +33,8 @@ public class PlayerTrigger : MonoBehaviour
 						playerController.hunger = 100;
 					}
 				}
-			}else{
+			} else
+			{
 				StartCoroutine(gameController.Wait());
 				gameController.Reviving(false);
 			}
@@ -51,6 +52,25 @@ public class PlayerTrigger : MonoBehaviour
 				playerController.hunger = 100;
 			}
 
+		} else if(other.tag == "Spear")
+		{
+			if(!gameController.IsReviving())
+			{
+				if(sundial.isDayTime())
+				{
+					// kill the player
+					gameObject.SetActive(false);
+					gameController.GameOverDisplay();
+				} else
+				{
+					// Destory spear
+					Destroy(other.gameObject);
+				}
+			} else
+			{
+				StartCoroutine(gameController.Wait());
+				gameController.Reviving(false);
+			}
 		}
 	}
 	

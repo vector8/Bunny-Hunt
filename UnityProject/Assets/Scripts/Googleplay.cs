@@ -9,6 +9,8 @@ public class Googleplay : MonoBehaviour {
 	public string carrotEaten = "CgkI9raG460ZEAIQDA";
 	public string hunterEaten = "CgkI9raG460ZEAIQDQ";
 	public static Googleplay googlePlayObject;
+
+	private bool signInStatus = false;
 	// Use this for initialization
 	void Awake() {
 		if(googlePlayObject == null)
@@ -26,8 +28,10 @@ public class Googleplay : MonoBehaviour {
 		Social.localUser.Authenticate((bool success) => {
 			if (success){
 				Debug.Log("Login successful");
+				signInStatus = true;
 			}else{
 				Debug.Log("Login failed");
+				signInStatus = false;
 			}
 		});
 	}
@@ -41,12 +45,26 @@ public class Googleplay : MonoBehaviour {
 		Social.localUser.Authenticate((bool success) => {
 			if (success){
 				Debug.Log("Login successful");
+				signInStatus = true;
 			}else{
 				Debug.Log("Login failed");
+				signInStatus = false;
 			}
 		});
 
 	}
+	public void SignOut(){
+		// sign out
+		PlayGamesPlatform.Instance.SignOut();
+		signInStatus = false;
+	}
+
+	//return player sign in status
+	public bool ReturnSignInStatus(){
+		return signInStatus;
+	}
+
+	// post day survived to leaderboard
 	public void PostDaySurvived(int day){
 		Social.ReportScore(day, daySurvived, (bool success) => {
 			if (success){
@@ -56,6 +74,8 @@ public class Googleplay : MonoBehaviour {
 			}
 		});
 	}
+
+	//post carots eaten to leaderboard
 	public void PostCarrotEaten(int carrot){
 		Social.ReportScore(carrot, carrotEaten, (bool success) => {
 			if (success){
@@ -65,6 +85,8 @@ public class Googleplay : MonoBehaviour {
 			}
 		});
 	}
+
+	//post hunters eaten to leaderboard
 	public void PostHunterEaten(int hunter){
 		Social.ReportScore(hunter, hunterEaten, (bool success) => {
 			if (success){
@@ -75,9 +97,16 @@ public class Googleplay : MonoBehaviour {
 		});
 	}
 
+	//show leaderboard main menu 
 	public void ShowLeaderboard(){
 		//PlayGamesPlatform.Instance.ShowLeaderboardUI("CgkI9raG460ZEAIQAQ");
-		Social.ShowLeaderboardUI();
+		if(signInStatus == true)
+		{
+			Social.ShowLeaderboardUI();
+		}else {
+			SignIn();
+		}
+
 	}
 
 

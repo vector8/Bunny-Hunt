@@ -150,6 +150,7 @@
      <Compile Include="Assets\Scripts\Achievements.cs" />
      <Compile Include="Assets\Scripts\Carrot.cs" />
      <Compile Include="Assets\Scripts\CarrotClone.cs" />
+     <Compile Include="Assets\Scripts\ConfirmSignIn.cs" />
      <Compile Include="Assets\Scripts\DestroyCarrot.cs" />
      <Compile Include="Assets\Scripts\DisplayAds.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />

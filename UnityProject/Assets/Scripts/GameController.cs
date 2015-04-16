@@ -24,9 +24,10 @@ public class GameController : MonoBehaviour {
 	public Sundial sundial;
 	public Camera camera;
 	public GameObject sundialUI;
-	public GameObject googlePlayObj;
-	public Googleplay googlePlayScript;
+	public GameObject confirmLogin;
 
+	private GameObject googlePlayObj;
+	private Googleplay googlePlayScript;
 	private bool dayTime = true;
 	private bool fade = true;
 	private bool displayMsg = false;
@@ -97,9 +98,15 @@ public class GameController : MonoBehaviour {
 		}
 		googlePlayObj = GameObject.Find("GooglePlay");
 		googlePlayScript = googlePlayObj.GetComponent<Googleplay>();
-		googlePlayScript.PostDaySurvived(sundial.day);
-		googlePlayScript.PostCarrotEaten(carrots);
-		googlePlayScript.PostHunterEaten(hunters);
+		if(googlePlayScript.ReturnSignInStatus() == false)
+		{
+			confirmLogin.SetActive(true);
+		} else
+		{
+			googlePlayScript.PostDaySurvived(sundial.day);
+			googlePlayScript.PostCarrotEaten(carrots);
+			googlePlayScript.PostHunterEaten(hunters);
+		}
 	}
 
 	public void HideGameOverDisplay(){
@@ -143,5 +150,14 @@ public class GameController : MonoBehaviour {
 
 	public IEnumerator Wait(){
 		yield return new WaitForSeconds(5.0f);
+	}
+
+	public void PostToLeaderboard(){
+		googlePlayObj = GameObject.Find("GooglePlay");
+		googlePlayScript = googlePlayObj.GetComponent<Googleplay>();
+		googlePlayScript.PostDaySurvived(sundial.day);
+		googlePlayScript.PostCarrotEaten(carrots);
+		googlePlayScript.PostHunterEaten(hunters);
+
 	}
 }
