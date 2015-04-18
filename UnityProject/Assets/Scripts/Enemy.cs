@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
 		attackTimer += Time.deltaTime;
 		alertBox = this.transform.FindChild("Alert").gameObject;
 		ahhhBox = this.transform.FindChild("Ahhh").gameObject;
+
 		
 		if(!attacking)
 		{
@@ -101,8 +102,12 @@ public class Enemy : MonoBehaviour
 					float screenWidth, screenHeight;
 					screenHeight = Camera.main.orthographicSize;
 					screenWidth = Camera.main.aspect * screenHeight;
-					
-					float chanceWest = 0.5f;
+
+					goal.x = Random.Range(-screenWidth,screenWidth);
+					goal.y = Random.Range(-screenHeight, screenHeight);
+					goal.z = 0;
+					/*
+					 * float chanceWest = 0.5f;
 					float chanceSouth = 0.5f;
 					
 					Vector3 temp = transform.position;
@@ -170,6 +175,7 @@ public class Enemy : MonoBehaviour
 					{
 						goal.y = -screenHeight;
 					}
+					*/
 				}
 				
 				currentSpeed = 0.0f;
@@ -220,5 +226,7 @@ public class Enemy : MonoBehaviour
 				anim.SetBool(attackingHash, attacking);
 			}
 		}
+		alertBox.transform.rotation = Quaternion.Euler(alertBox.transform.rotation.eulerAngles.x, 0, 0); 
+		ahhhBox.transform.rotation = Quaternion.Euler(ahhhBox.transform.rotation.eulerAngles.x, 0, 0); 
 	}
 }
