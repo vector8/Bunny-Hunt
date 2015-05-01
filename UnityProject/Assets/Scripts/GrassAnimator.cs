@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GrassAnimator : MonoBehaviour 
 {
-	private SpriteRenderer renderer;
+	new private SpriteRenderer renderer; // 'new' keyword remodes warning in unity console.
 	
 	public Sundial sundial;
 	public Color dayColor;
