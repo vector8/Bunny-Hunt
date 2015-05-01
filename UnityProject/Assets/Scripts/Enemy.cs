@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour
 				{
 					// find a new goal to wander to
 					// find a random point within wander range (higher chance to move toward center of map the further out this is)
-					float wanderDistance = Random.Range(minWanderRange, maxWanderRange);
+					//float wanderDistance = Random.Range(minWanderRange, maxWanderRange);
 					
 					float screenWidth, screenHeight;
 					screenHeight = Camera.main.orthographicSize;
