@@ -1,0 +1,10 @@
+syntax: glob
+UnityProject/Library/*
+UnityProject/Temp/*
+UnityProject/obj/*
+*.csproj
+*.unityproj
+*.sln
+*.user
+*.userprefs
+*.DS_store

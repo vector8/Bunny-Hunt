@@ -9,9 +9,12 @@ public class Tutorial : MonoBehaviour
 	public GameObject backButton;
 	public GameObject skipButton;
 	public StartGame startGame;
-	public GameObject frame1Text;
-	public GameObject frame2Text;
-	public GameObject frame3Text;
+	public GameObject frame1;
+	public GameObject frame2;
+	public GameObject frame3;
+	
+	public GameObject player1;
+	public GameObject player2;
 	
 	private int frameNumber = 1;
 	
@@ -23,7 +26,6 @@ public class Tutorial : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-	
 	}
 	
 	public void willReturnToMenu(bool returnToMenu)
@@ -48,14 +50,16 @@ public class Tutorial : MonoBehaviour
 		
 		if(frameNumber == 2)
 		{
-			frame1Text.SetActive(false);
-			frame2Text.SetActive(true);
+			frame1.SetActive(false);
+			frame2.SetActive(true);
+			player1.transform.position = new Vector2(-3.2f, 0f);
 		}
 		else if(frameNumber == 3)
 		{
-			frame2Text.SetActive(false);
-			frame3Text.SetActive(true);
+			frame2.SetActive(false);
+			frame3.SetActive(true);
 			nextFrameButton.SetActive(false);
+			player2.transform.position = new Vector2(-3.2f, 0f);
 		}
 	}
 	
@@ -67,14 +71,15 @@ public class Tutorial : MonoBehaviour
 		
 		if(frameNumber == 2)
 		{
-			frame3Text.SetActive(false);
-			frame2Text.SetActive(true);
+			frame3.SetActive(false);
+			frame2.SetActive(true);
 		}
 		else if(frameNumber == 1)
 		{
-			frame2Text.SetActive(false);
-			frame1Text.SetActive(true);
+			frame2.SetActive(false);
+			frame1.SetActive(true);
 			prevFrameButton.SetActive(false);
+			player2.transform.position = new Vector2(-3.2f, 0f);
 		}
 	}
 	
