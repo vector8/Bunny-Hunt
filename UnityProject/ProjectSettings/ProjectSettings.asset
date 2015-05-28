@@ -8,7 +8,6 @@ PlayerSettings:
   defaultScreenOrientation: 4
   targetDevice: 2
   targetGlesGraphics: 1
-  targetIOSGraphics: -1
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: Late Day Interactive
@@ -73,8 +72,7 @@ PlayerSettings:
   metroEnableLowLatencyPresentationAPI: 0
   productGUID: f9898bdf1c95e4c43af04ddc436e78c9
   iPhoneBundleVersion: 0.2.5
-  iPhoneShortBundleVersion: 1.0
-  AndroidBundleVersionCode: 21
+  AndroidBundleVersionCode: 22
   AndroidMinSdkVersion: 19
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -103,18 +101,9 @@ PlayerSettings:
   iPadHighResPortraitSplashScreen: {fileID: 0}
   iPadLandscapeSplashScreen: {fileID: 0}
   iPadHighResLandscapeSplashScreen: {fileID: 0}
-  iOSLaunchScreenType: 0
-  iOSLaunchScreenPortrait: {fileID: 0}
-  iOSLaunchScreenLandscape: {fileID: 0}
-  iOSLaunchScreenBackgroundColor:
-    serializedVersion: 2
-    rgba: 4289568893
-  iOSLaunchScreenFillPct: 100
-  iOSLaunchScreenSize: 100
-  iOSLaunchScreenCustomXibPath: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  AndroidKeystoreName: C:/Users/Chris/Documents/Colony/Lock.keystore
+  AndroidKeystoreName: C:/Users/Yan/Desktop/project-itchy-haystack/Lock.keystore
   AndroidKeyaliasName: latelock
   resolutionDialogBanner: {fileID: 0}
   m_BuildTargetIcons:
