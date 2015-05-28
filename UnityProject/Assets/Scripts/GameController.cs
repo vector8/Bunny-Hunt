@@ -32,6 +32,9 @@ public class GameController : MonoBehaviour {
 	private bool fade = true;
 	private bool displayMsg = false;
 	private bool reviving = false;
+	private int preCarrots = 0;
+	private int preHunters = 0;
+	private int preDay = 0;
 	
 	// Use this for initialization
 	void Start()
@@ -39,8 +42,9 @@ public class GameController : MonoBehaviour {
 		if (Advertisement.isSupported) {
 			Advertisement.allowPrecache = true;
 			Advertisement.Initialize (appID, false);
-		}	
-
+		}			
+		googlePlayObj = GameObject.Find("GooglePlay");
+		googlePlayScript = googlePlayObj.GetComponent<Googleplay>();
 	}
 	
 	// Update is called once per physics time unit
@@ -79,6 +83,28 @@ public class GameController : MonoBehaviour {
 				Fade();
 			}
 		}
+		if (preCarrots != carrots) {
+			preCarrots = carrots;
+			if(googlePlayScript.ReturnSignInStatus() == true)
+			{
+				googlePlayScript.CarrotsAchievement(carrots);
+			}
+		}
+		if (preHunters != hunters) {
+			preHunters = hunters;
+			if(googlePlayScript.ReturnSignInStatus() == true)
+			{
+				googlePlayScript.HunterAchievement(hunters);
+			}
+		}
+		if (preDay != sundial.day) {
+			preDay = sundial.day;
+			if(googlePlayScript.ReturnSignInStatus() == true)
+			{
+				googlePlayScript.DaysAchievement(sundial.day);
+			}
+		}
+
 	}
 
 	public void GameOverDisplay(){
