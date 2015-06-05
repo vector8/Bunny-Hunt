@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1001 &265794011
 Prefab:
@@ -307,9 +306,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3433eedcd9df25140a4c3739eb7a3685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  daySurvived: CgkI9raG460ZEAIQAQ
-  carrotEaten: CgkI9raG460ZEAIQDA
-  hunterEaten: CgkI9raG460ZEAIQDQ
+  achieveDay1Req: 5
+  achieveDay2Req: 10
+  achieveDay3Req: 15
+  achieveCarrot1Req: 10
+  achieveCarrot2Req: 20
+  achieveHunter1Req: 50
+  achieveHunter2Req: 100
 --- !u!4 &337478332
 Transform:
   m_ObjectHideFlags: 0
@@ -351,8 +354,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
