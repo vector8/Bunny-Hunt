@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour {
 	public Text txtDays;
 	public Text txtHunters;
 	public Text txtDayMsg;
+	public Text carrotsCount;
+	public Text huntersCount;
 	public Button btnRestart;
 	public Button btnShowAd;
 	public Button btnShowLB;
@@ -85,6 +87,7 @@ public class GameController : MonoBehaviour {
 		}
 		if (preCarrots != carrots) {
 			preCarrots = carrots;
+			carrotsCount.text = "X  " + carrots;
 			if(googlePlayScript.ReturnSignInStatus() == true)
 			{
 				googlePlayScript.CarrotsAchievement(carrots);
@@ -92,6 +95,7 @@ public class GameController : MonoBehaviour {
 		}
 		if (preHunters != hunters) {
 			preHunters = hunters;
+			huntersCount.text = "X  " + hunters;
 			if(googlePlayScript.ReturnSignInStatus() == true)
 			{
 				googlePlayScript.HunterAchievement(hunters);
