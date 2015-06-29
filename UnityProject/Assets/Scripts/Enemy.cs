@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
 	private float currentSpeed;
 	private GameObject alertBox;
 	private GameObject ahhhBox;
+	private GameObject SF_throwSpearObj;
+	private GameObject SF_hunterRunawayObj;
+	private GameObject SF_hunterChaseObj;
 
 	public GameController gameController;
 	public GameObject player;
@@ -29,11 +32,20 @@ public class Enemy : MonoBehaviour
 	public float maxIdleTime;
 	public Spear spearPrefab;
 	public Vector3 goal;
+	public AudioSource SF_throwSpear;
+	public AudioSource SF_hunterRunaway;
+	public AudioSource SF_hunterChase;
 	
 	// Use this for initialization
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
+		SF_throwSpearObj = GameObject.Find("SF_ThrowSpear");
+		SF_throwSpear = SF_throwSpearObj.GetComponent<AudioSource>();
+		SF_hunterRunawayObj = GameObject.Find("SF_HunterRunaway");
+		SF_hunterRunaway = SF_hunterRunawayObj.GetComponent<AudioSource>();
+		SF_hunterChaseObj = GameObject.Find("SF_HunterChase");
+		SF_hunterChase = SF_hunterChaseObj.GetComponent<AudioSource>();
 
 	}
 	
@@ -51,6 +63,10 @@ public class Enemy : MonoBehaviour
 			ahhhBox.SetActive(false);
 			if(player.activeSelf && Vector3.Distance(player.transform.position, transform.position) < detectionRadius)
 			{
+				if (!SF_hunterChase.isPlaying)
+				{
+					SF_hunterChase.Play ();
+				}
 				alertBox.SetActive(true);
 				ahhhBox.SetActive(false);
 				if(attackTimer >= attackDelay && sundial.isDayTime())
@@ -72,12 +88,20 @@ public class Enemy : MonoBehaviour
 				
 				if(sundial.isDayTime())
 				{
+					if (!SF_hunterChase.isPlaying)
+					{
+						SF_hunterChase.Play ();
+					}
 					alertBox.SetActive(true);
 					ahhhBox.SetActive(false);
 					goal = player.transform.position;
 				}
 				else
 				{
+					if (!SF_hunterRunaway.isPlaying)
+					{
+						SF_hunterRunaway.Play ();
+					}
 					// get the point on the opposite side of this enemy from the player
 					// TODO: Limit running to within the screen boundary?
 					alertBox.SetActive(false);
@@ -215,6 +239,7 @@ public class Enemy : MonoBehaviour
 		{
 			if(attackTimer >= attackAnimationLength)
 			{
+				SF_throwSpear.Play ();
 				Quaternion rotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), (player.transform.position - transform.position));
 				Spear instance;
 				Vector3 startPos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);

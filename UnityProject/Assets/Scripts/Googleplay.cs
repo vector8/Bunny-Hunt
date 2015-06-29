@@ -39,6 +39,8 @@ public class Googleplay : MonoBehaviour {
 	}
 
 	void Start () {
+		//Disable for PC
+		/*
 		PlayGamesPlatform.DebugLogEnabled = true;
 		PlayGamesPlatform.Activate();
 		Social.localUser.Authenticate((bool success) => {
@@ -50,6 +52,7 @@ public class Googleplay : MonoBehaviour {
 				signInStatus = false;
 			}
 		});
+		*/
 	}
 	
 	// Update is called once per frame
