@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 	private Animator anim;
 	private Vector3 moveDirection;
 	private Vector3 targetPosition;
+	private bool dayTimeNow = true;
 
 	public float hunger = 100;
 	public float hungerFactor;
@@ -21,6 +22,11 @@ public class PlayerController : MonoBehaviour
 	public GameController gameController;
 	public Image hungerBar;
 	public Sundial sundial;
+	public AudioSource SF_hop;
+	public AudioSource SF_mutatedHop;
+	public AudioSource SF_mutateBig;
+	public AudioSource SF_mutateSmall;
+	public AudioSource SF_bunnyDie;
 	
 	// Use this for initialization
 	void Start()
@@ -38,9 +44,49 @@ public class PlayerController : MonoBehaviour
 			if(Input.GetButtonDown("Fire1"))
 			{
 				clickDelay = 0;
+				if (sundial.isDayTime())
+				{
+					if (SF_mutatedHop.isPlaying)
+					{
+						SF_mutatedHop.Stop ();
+					}
+					if(!SF_hop.isPlaying)
+					{
+						SF_hop.Play ();
+					}
+				}else {
+					if(SF_hop.isPlaying)
+					{
+						SF_hop.Stop ();
+					}
+					if (!SF_mutatedHop.isPlaying)
+					{
+						SF_mutatedHop.Play ();
+					}
+				}
 			} else if(Input.GetButtonUp("Fire1"))
 			{
 				jumping = (clickDelay < 0.5f);
+				if (sundial.isDayTime())
+				{
+					if(SF_hop.isPlaying)
+					{
+						SF_hop.Stop ();
+					}
+					if (SF_mutatedHop.isPlaying)
+					{
+						SF_mutatedHop.Stop ();
+					}
+				}else {
+					if(SF_hop.isPlaying)
+					{
+						SF_hop.Stop ();
+					}
+					if (SF_mutatedHop.isPlaying)
+					{
+						SF_mutatedHop.Stop ();
+					}
+				}
 			}
 	
 			if(jumping)
@@ -127,6 +173,7 @@ public class PlayerController : MonoBehaviour
 		
 				if(moveDirection.magnitude != 0)
 				{
+				
 					Vector3 scale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 					if(moveDirection.x < 0)
 					{
@@ -146,16 +193,27 @@ public class PlayerController : MonoBehaviour
 				} else
 				{
 					anim.SetFloat(speedHash, 0);
+
 				}
 			}
 		
-			if(!sundial.isDayTime())
-			{
-				transform.localScale = new Vector3(Mathf.Sign(transform.localScale.x) * 3.0f, 3.0f, 1.0f);
+			if(sundial.isDayTime())
+			{				
+				transform.localScale = new Vector3(Mathf.Sign(transform.localScale.x) * 1.5f, 1.5f, 1.0f);
+				if (dayTimeNow != sundial.isDayTime())
+				{
+					dayTimeNow=sundial.isDayTime();
+					SF_mutateSmall.Play ();
+				}
 			} 
 			else
 			{
-				transform.localScale = new Vector3(Mathf.Sign(transform.localScale.x) * 1.5f, 1.5f, 1.0f);
+				transform.localScale = new Vector3(Mathf.Sign(transform.localScale.x) * 3.0f, 3.0f, 1.0f);
+				if (dayTimeNow != sundial.isDayTime())
+				{
+					dayTimeNow=sundial.isDayTime();
+					SF_mutateBig.Play ();
+				}
 			}
 		
 			anim.SetBool(mutatedHash, !sundial.isDayTime());
@@ -185,6 +243,15 @@ public class PlayerController : MonoBehaviour
 			hunger -= Time.deltaTime * hungerFactor;
 			if(hunger < 0)
 			{
+				if(SF_hop.isPlaying)
+				{
+					SF_hop.Stop();
+				}
+				if (!SF_mutatedHop.isPlaying)
+				{
+					SF_mutatedHop.Stop ();
+				}
+				SF_bunnyDie.Play ();
 				hunger = 0;
 			}	
 			hungerBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, hunger * 3);
