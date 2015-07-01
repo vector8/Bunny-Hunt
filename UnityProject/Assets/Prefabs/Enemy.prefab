@@ -154,8 +154,12 @@ MonoBehaviour:
   maxWanderRange: 4
   minIdleTime: 1
   maxIdleTime: 5
+  screamDelay: 2
   spearPrefab: {fileID: 11461498, guid: 9a68482c605eb2241b321052702658ef, type: 2}
   goal: {x: 0, y: 0, z: 0}
+  SF_throwSpear: {fileID: 0}
+  SF_hunterRunaway: {fileID: 0}
+  SF_hunterChase: {fileID: 0}
 --- !u!212 &21213896
 SpriteRenderer:
   m_ObjectHideFlags: 1

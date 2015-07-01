@@ -44,6 +44,15 @@ public class PlayerController : MonoBehaviour
 			if(Input.GetButtonDown("Fire1"))
 			{
 				clickDelay = 0;
+
+			} else if(Input.GetButtonUp("Fire1"))
+			{
+				jumping = (clickDelay < 0.5f);
+
+			}
+	
+			if(jumping)
+			{
 				if (sundial.isDayTime())
 				{
 					if (SF_mutatedHop.isPlaying)
@@ -64,33 +73,6 @@ public class PlayerController : MonoBehaviour
 						SF_mutatedHop.Play ();
 					}
 				}
-			} else if(Input.GetButtonUp("Fire1"))
-			{
-				jumping = (clickDelay < 0.5f);
-				if (sundial.isDayTime())
-				{
-					if(SF_hop.isPlaying)
-					{
-						SF_hop.Stop ();
-					}
-					if (SF_mutatedHop.isPlaying)
-					{
-						SF_mutatedHop.Stop ();
-					}
-				}else {
-					if(SF_hop.isPlaying)
-					{
-						SF_hop.Stop ();
-					}
-					if (SF_mutatedHop.isPlaying)
-					{
-						SF_mutatedHop.Stop ();
-					}
-				}
-			}
-	
-			if(jumping)
-			{
 				jumpTimer += Time.deltaTime;
 			
 				anim.SetFloat(speedHash, jumpSpeed);
@@ -131,7 +113,7 @@ public class PlayerController : MonoBehaviour
 			} else
 			{
 				if(Input.GetButton("Fire1"))
-				{
+				{				
 					clickDelay += Time.deltaTime;
 				
 					targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
