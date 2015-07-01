@@ -9,9 +9,11 @@ public class Pause : MonoBehaviour {
 	public PlayerController player;
 	public GameObject pause;
 	public GameObject pauseGUI;
+	public AudioSource gameMusic;
 
 	public void ResumeGame()
 	{
+		gameMusic.Play ();
 		pauseGUI.SetActive(false);
 		pause.SetActive(true);
 		player.freeze();
@@ -21,6 +23,7 @@ public class Pause : MonoBehaviour {
 
 	public void PauseGame()
 	{
+		gameMusic.Pause ();
 		pauseGame = true;
 		player.freeze();
 		Time.timeScale=0;
