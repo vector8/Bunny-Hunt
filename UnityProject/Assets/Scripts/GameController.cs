@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour {
 	public Camera camera;
 	public GameObject sundialUI;
 	public GameObject confirmLogin;
+	public AudioSource gameMusic;
 
 	private GameObject googlePlayObj;
 	private Googleplay googlePlayScript;
@@ -124,6 +125,7 @@ public class GameController : MonoBehaviour {
 		btnShowLB.gameObject.SetActive(true);
 		if(lifeAvailable)
 		{
+			gameMusic.Pause();
 			btnShowAd.gameObject.SetActive(true);
 		}
 		googlePlayObj = GameObject.Find("GooglePlay");

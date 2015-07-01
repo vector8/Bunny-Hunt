@@ -8,6 +8,7 @@ public class DisplayAds : MonoBehaviour {
 	public GameController gameController;
 	public PlayerController playerController;
 	public GameObject confirmAdGUI;
+	public AudioSource gameMusic;
 	// GameObject confirmAdGUI;
 
 	// Use this for initialization
@@ -58,7 +59,7 @@ public class DisplayAds : MonoBehaviour {
 		gameController.lifeAvailable = false;
 		playerController.hunger = 100;
 		player.SetActive(true);
-		
+		gameMusic.Play ();
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 		foreach(GameObject enemy in enemies)
 		{
