@@ -16,16 +16,11 @@ public class PlayerTrigger : MonoBehaviour
 	{
 		if(other.tag == "Enemy")
 		{
-			SF_bunnyDie.Play ();
-			if (SF_bunnyHop.isPlaying)
-			{
-				SF_bunnyHop.Stop ();
+			if (sundial.isDayTime()){
+				SF_bunnyDie.Play ();
+			}else{
+				SF_eatHunter.Play ();
 			}
-			if (SF_mutatedHop.isPlaying)
-			{
-				SF_mutatedHop.Stop ();
-			}
-			SF_eatHunter.Play ();
 			if(!gameController.IsReviving())
 			{
 				if(sundial.isDayTime())

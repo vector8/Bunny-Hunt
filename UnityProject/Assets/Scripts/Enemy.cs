@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 	private GameObject SF_throwSpearObj;
 	private GameObject SF_hunterRunawayObj;
 	private GameObject SF_hunterChaseObj;
+	private float screamTimer = 0;
 
 	public GameController gameController;
 	public GameObject player;
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
 	public float maxWanderRange;
 	public float minIdleTime;
 	public float maxIdleTime;
+	public float screamDelay;
 	public Spear spearPrefab;
 	public Vector3 goal;
 	public AudioSource SF_throwSpear;
@@ -45,7 +47,9 @@ public class Enemy : MonoBehaviour
 		SF_hunterRunawayObj = GameObject.Find("SF_HunterRunaway");
 		SF_hunterRunaway = SF_hunterRunawayObj.GetComponent<AudioSource>();
 		SF_hunterChaseObj = GameObject.Find("SF_HunterChase");
-		SF_hunterChase = SF_hunterChaseObj.GetComponent<AudioSource>();
+		SF_hunterChase = SF_hunterChaseObj.GetComponent<AudioSource>();		
+		alertBox = this.transform.FindChild("Alert").gameObject;
+		ahhhBox = this.transform.FindChild("Ahhh").gameObject;
 
 	}
 	
@@ -53,9 +57,7 @@ public class Enemy : MonoBehaviour
 	void Update ()
 	{
 		attackTimer += Time.deltaTime;
-		alertBox = this.transform.FindChild("Alert").gameObject;
-		ahhhBox = this.transform.FindChild("Ahhh").gameObject;
-
+		screamTimer += Time.deltaTime;
 		
 		if(!attacking)
 		{
@@ -63,14 +65,15 @@ public class Enemy : MonoBehaviour
 			ahhhBox.SetActive(false);
 			if(player.activeSelf && Vector3.Distance(player.transform.position, transform.position) < detectionRadius)
 			{
-				if (!SF_hunterChase.isPlaying)
-				{
-					SF_hunterChase.Play ();
-				}
+
 				alertBox.SetActive(true);
 				ahhhBox.SetActive(false);
 				if(attackTimer >= attackDelay && sundial.isDayTime())
 				{
+					if ((screamTimer >= screamDelay) && (!SF_hunterChase.isPlaying)){
+						SF_hunterChase.Play();
+						screamTimer = 0;
+					}
 					attackTimer = 0.0f;
 					attacking = true;
 					anim.SetBool(attackingHash, attacking);
@@ -78,6 +81,10 @@ public class Enemy : MonoBehaviour
 				}
 				else
 				{
+					if ((screamTimer >= screamDelay) && (!sundial.isDayTime())){
+						SF_hunterRunaway.Play ();
+						screamTimer=0;
+					}
 					chaseTimer = maxChaseTime;
 				}
 			}
@@ -88,20 +95,13 @@ public class Enemy : MonoBehaviour
 				
 				if(sundial.isDayTime())
 				{
-					if (!SF_hunterChase.isPlaying)
-					{
-						SF_hunterChase.Play ();
-					}
+
 					alertBox.SetActive(true);
 					ahhhBox.SetActive(false);
 					goal = player.transform.position;
 				}
 				else
 				{
-					if (!SF_hunterRunaway.isPlaying)
-					{
-						SF_hunterRunaway.Play ();
-					}
 					// get the point on the opposite side of this enemy from the player
 					// TODO: Limit running to within the screen boundary?
 					alertBox.SetActive(false);
