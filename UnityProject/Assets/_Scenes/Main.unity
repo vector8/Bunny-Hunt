@@ -262,6 +262,7 @@ MonoBehaviour:
   camera: {fileID: 1304174395}
   sundialUI: {fileID: 227950754}
   confirmLogin: {fileID: 558503335}
+  gameMusic: {fileID: 1503258563}
 --- !u!4 &101131334
 Transform:
   m_ObjectHideFlags: 0
@@ -387,6 +388,7 @@ MonoBehaviour:
   gameController: {fileID: 101131333}
   playerController: {fileID: 1577356308}
   confirmAdGUI: {fileID: 828503457}
+  gameMusic: {fileID: 0}
 --- !u!114 &120249982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,6 +880,7 @@ MonoBehaviour:
   gameController: {fileID: 101131333}
   playerController: {fileID: 1577356308}
   confirmAdGUI: {fileID: 828503457}
+  gameMusic: {fileID: 1503258563}
 --- !u!1 &191877030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,6 +2088,7 @@ MonoBehaviour:
   gameController: {fileID: 101131333}
   playerController: {fileID: 1577356308}
   confirmAdGUI: {fileID: 828503457}
+  gameMusic: {fileID: 0}
 --- !u!1 &813088483
 GameObject:
   m_ObjectHideFlags: 0
