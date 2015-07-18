@@ -17,7 +17,7 @@ public class Sundial : MonoBehaviour
 		dialWidth = sundialUI.renderer.bounds.extents.x; 
 		dialHeight = sundialUI.renderer.bounds.extents.y;
 
-		this.transform.position = new Vector3(screenWidth - dialWidth - 0.5f, screenHeight - dialHeight - 0.5f, 0);
+		this.transform.position = new Vector3(screenWidth - dialWidth - 0.5f, screenHeight - dialHeight - 0.2f, 0);
 	}
 	
 	// Update is called once per frame
