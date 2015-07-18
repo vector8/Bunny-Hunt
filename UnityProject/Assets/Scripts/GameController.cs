@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour {
 		}
 		if (preCarrots != carrots) {
 			preCarrots = carrots;
-			carrotsCount.text = "X  " + carrots;
+			carrotsCount.text = carrots.ToString();
 			if(googlePlayScript.ReturnSignInStatus() == true)
 			{
 				googlePlayScript.CarrotsAchievement(carrots);
@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour {
 		}
 		if (preHunters != hunters) {
 			preHunters = hunters;
-			huntersCount.text = "X  " + hunters;
+			huntersCount.text = hunters.ToString();
 			if(googlePlayScript.ReturnSignInStatus() == true)
 			{
 				googlePlayScript.HunterAchievement(hunters);

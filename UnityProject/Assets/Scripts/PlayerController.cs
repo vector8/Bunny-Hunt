@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 	private int mutatedHash = Animator.StringToHash("Mutated");
 	private Animator anim;
 	private Vector3 moveDirection;
+	private Vector3 prevMoveDirection;
 	private Vector3 targetPosition;
 	private bool dayTimeNow = true;
 
@@ -76,7 +77,15 @@ public class PlayerController : MonoBehaviour
 				jumpTimer += Time.deltaTime;
 			
 				anim.SetFloat(speedHash, jumpSpeed);
-				transform.position += moveDirection * jumpSpeed * Time.deltaTime;
+				if ((moveDirection.x ==0)&&(moveDirection.y == 0)){
+					//moveDirection.x = prevMoveDirection.x/2;
+					//moveDirection.y = prevMoveDirection.y/2;
+					moveDirection=targetPosition;
+					transform.position += moveDirection * jumpSpeed * Time.deltaTime;
+				}else {
+					prevMoveDirection = moveDirection;
+					transform.position += moveDirection * jumpSpeed * Time.deltaTime;
+				}
 			
 				float screenWidth, screenHeight;
 				screenHeight = Camera.main.orthographicSize;
