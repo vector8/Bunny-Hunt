@@ -233,7 +233,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Built Version: 0.3.0 Build 30'
+  m_Text: 'Built Version: 0.3.2 Build 32'
 --- !u!222 &60609622
 CanvasRenderer:
   m_ObjectHideFlags: 0
