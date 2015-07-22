@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour {
 	public GameObject sundialUI;
 	public GameObject confirmLogin;
 	public AudioSource gameMusic;
+	public Button btnExit;
+	public Button btnPause;
 
 	private GameObject googlePlayObj;
 	private Googleplay googlePlayScript;
@@ -123,6 +125,8 @@ public class GameController : MonoBehaviour {
 		txtHunters.gameObject.SetActive(true);
 		btnRestart.gameObject.SetActive(true);
 		btnShowLB.gameObject.SetActive(true);
+		btnExit.gameObject.SetActive (true);
+		btnPause.gameObject.SetActive (false);
 		if(lifeAvailable)
 		{
 			gameMusic.Pause();
@@ -150,6 +154,8 @@ public class GameController : MonoBehaviour {
 		btnShowAd.enabled = false;
 		btnShowAd.gameObject.SetActive(false);
 		btnShowLB.gameObject.SetActive(false);
+		btnExit.gameObject.SetActive (false);
+		btnPause.gameObject.SetActive (true);
 	}
 	
 	public void Fade()
