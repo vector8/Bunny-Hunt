@@ -76,13 +76,11 @@ public class PlayerController : MonoBehaviour
 				}
 				jumpTimer += Time.deltaTime;
 			
-				anim.SetFloat(speedHash, jumpSpeed);
+
 				if ((moveDirection.x ==0)&&(moveDirection.y == 0)){
-					//moveDirection.x = prevMoveDirection.x/2;
-					//moveDirection.y = prevMoveDirection.y/2;
-					moveDirection=targetPosition;
-					transform.position += moveDirection * jumpSpeed * Time.deltaTime;
+					transform.position += prevMoveDirection * jumpSpeed * Time.deltaTime;
 				}else {
+					anim.SetFloat(speedHash, jumpSpeed);
 					prevMoveDirection = moveDirection;
 					transform.position += moveDirection * jumpSpeed * Time.deltaTime;
 				}
@@ -160,6 +158,7 @@ public class PlayerController : MonoBehaviour
 					moveDirection.x = 0;
 					moveDirection.y = 0;
 					moveDirection.z = 0;
+					jumping = false;
 				}
 		
 				if(moveDirection.magnitude != 0)
@@ -180,6 +179,7 @@ public class PlayerController : MonoBehaviour
 						moveDirection.x = 0;
 						moveDirection.y = 0;
 						moveDirection.z = 0;
+						jumping = false;
 					}
 				} else
 				{
