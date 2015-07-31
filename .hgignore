@@ -8,3 +8,5 @@ UnityProject/obj/*
 *.user
 *.userprefs
 *.DS_store
+UnityProject/Assets/Sprites - New/Thumbs.db
+UnityProject/.vs/UnityProject-csharp/v14/.suo

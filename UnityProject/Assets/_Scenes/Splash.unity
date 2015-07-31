@@ -311,13 +311,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3433eedcd9df25140a4c3739eb7a3685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achieveDay1Req: 5
-  achieveDay2Req: 10
-  achieveDay3Req: 15
-  achieveCarrot1Req: 10
-  achieveCarrot2Req: 20
-  achieveHunter1Req: 50
-  achieveHunter2Req: 100
+  daysSurvivedReqs: 050000000a0000000f000000140000001900000032000000
+  daysSurvivedIDs:
+  - CgkI9raG460ZEAIQBw
+  - CgkI9raG460ZEAIQCA
+  - CgkI9raG460ZEAIQCQ
+  - CgkI9raG460ZEAIQEA
+  - CgkI9raG460ZEAIQEQ
+  - CgkI9raG460ZEAIQEg
+  huntersEatenReqs: 19000000320000006400000096000000c8000000f4010000
+  huntersEatenIDs:
+  - CgkI9raG460ZEAIQEw
+  - CgkI9raG460ZEAIQFA
+  - CgkI9raG460ZEAIQCg
+  - CgkI9raG460ZEAIQCw
+  - CgkI9raG460ZEAIQFg
+  - CgkI9raG460ZEAIQFQ
+  carrotsEatenReqs: 0a000000140000001e000000280000003200000064000000
+  carrotsEatenIDs:
+  - CgkI9raG460ZEAIQDg
+  - CgkI9raG460ZEAIQDw
+  - CgkI9raG460ZEAIQFw
+  - CgkI9raG460ZEAIQGA
+  - CgkI9raG460ZEAIQGQ
+  - CgkI9raG460ZEAIQGg
 --- !u!4 &337478332
 Transform:
   m_ObjectHideFlags: 0
