@@ -72,9 +72,9 @@ PlayerSettings:
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   productGUID: f9898bdf1c95e4c43af04ddc436e78c9
-  iPhoneBundleVersion: 0.3.5
-  iPhoneShortBundleVersion: 0.35
-  AndroidBundleVersionCode: 35
+  iPhoneBundleVersion: 1.0.0
+  iPhoneShortBundleVersion: 1.0
+  AndroidBundleVersionCode: 36
   AndroidMinSdkVersion: 19
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -114,7 +114,7 @@ PlayerSettings:
   iOSLaunchScreenCustomXibPath: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  AndroidKeystoreName: C:/Users/Chris/Documents/Colony/Lock.keystore
+  AndroidKeystoreName: C:/Users/Public/Documents/Unity Projects/Project Itchy Haystack/Lock.keystore
   AndroidKeyaliasName: latelock
   resolutionDialogBanner: {fileID: 0}
   m_BuildTargetIcons:
