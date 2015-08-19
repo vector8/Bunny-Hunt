@@ -11,13 +11,6 @@ public class Sundial : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		float screenWidth, screenHeight, dialWidth, dialHeight;
-		screenHeight = Camera.main.orthographicSize;
-		screenWidth = Camera.main.aspect * screenHeight;
-		dialWidth = sundialUI.renderer.bounds.extents.x; 
-		dialHeight = sundialUI.renderer.bounds.extents.y;
-
-		this.transform.position = new Vector3(screenWidth - dialWidth - 0.5f, screenHeight - dialHeight - 0.2f, 0);
 	}
 	
 	// Update is called once per frame
