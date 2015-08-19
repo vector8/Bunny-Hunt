@@ -74,7 +74,7 @@ PlayerSettings:
   productGUID: f9898bdf1c95e4c43af04ddc436e78c9
   iPhoneBundleVersion: 1.0.0
   iPhoneShortBundleVersion: 1.0
-  AndroidBundleVersionCode: 37
+  AndroidBundleVersionCode: 38
   AndroidMinSdkVersion: 19
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -114,13 +114,13 @@ PlayerSettings:
   iOSLaunchScreenCustomXibPath: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  AndroidKeystoreName: C:/Users/Chris/Documents/Colony/Lock.keystore
+  AndroidKeystoreName: C:/Users/Public/Documents/Unity Projects/Project Itchy Haystack/Lock.keystore
   AndroidKeyaliasName: latelock
   resolutionDialogBanner: {fileID: 0}
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
-    - m_Icon: {fileID: 2800000, guid: 19c81fabbb102174cbc1ce5095647c47, type: 3}
+    - m_Icon: {fileID: 2800000, guid: 2ff8982bede74fe4eb6708886784e4a4, type: 3}
       m_Size: 128
   m_BuildTargetBatching:
   - m_BuildTarget: Android
