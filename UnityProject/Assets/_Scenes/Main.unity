@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &23316053
 GameObject:
@@ -248,6 +247,8 @@ MonoBehaviour:
   carrots: 0
   hunters: 0
   lifeAvailable: 1
+  levelScaleToDays: 10
+  levelStartRatio: .600000024
   txtDayCount: {fileID: 1487408589}
   txtGameOver: {fileID: 1574880659}
   txtCarrots: {fileID: 1641866687}
@@ -1149,8 +1150,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1219,12 +1220,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2679a29d0afec47b558b1c99ceb787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingAverageSpawnTime: 5
+  startingAverageSpawnTime: 4
   spawnDivisor: 1.5
   enemyPrefab: {fileID: 11425178, guid: 4ab90c4be1f5c3342a1af98ac2212cd5, type: 2}
   gameController: {fileID: 101131333}
   player: {fileID: 1577356304}
   sundial: {fileID: 415407233}
+  startingMaxEnemy: 4
+  maxEnemyByDayRatio: 1
 --- !u!4 &288730771
 Transform:
   m_ObjectHideFlags: 0
@@ -2007,7 +2010,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1730757887
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6d145982f538ec64d8f8d1e02db8c6d7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e72ae4e8ea09245428cfc25f0cf86e52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &588126567
 Transform:
@@ -3848,7 +3851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81ddbb9992644ffca554231ee3ec88a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avgSpawnTime: 4
+  avgSpawnTime: 2
   sundial: {fileID: 415407233}
   carrot: {fileID: 11403962, guid: be12785e56dda4888a2224560145c1ac, type: 2}
 --- !u!4 &1390824526
@@ -4739,7 +4742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hunger: 100
-  hungerFactor: 5
+  maxHungerFactor: 5
   jumpSpeed: 10
   jumpDuration: .5
   moveSpeed: 5

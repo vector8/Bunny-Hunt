@@ -9,23 +9,39 @@ public class Spear : MonoBehaviour
 	private float interpSpeed;
 	private float lifeTime;
 	private Vector3 target;
+	private int dayCount;
+	private float levelStartRatio;
+	private float levelScaleToDays;
 	public float maxLifeTime;
-	public float moveSpeed;
+	public float maxMoveSpeed;
 	public GameObject player;
 	public GameController gameController;
+	public GameObject sundialObj;
+	public Sundial sundial;
 	
 	// Use this for initialization
 	void Start()
 	{
 		originalPosition = transform.position;
 		target = player.transform.position;
-		
-		interpSpeed = moveSpeed / Vector3.Distance(originalPosition, target);
+		levelScaleToDays = gameController.getLevelScale ();
+		levelStartRatio = gameController.getLevelStartRatio ();
+		sundialObj = GameObject.Find ("Sundial");
+		sundial = sundialObj.GetComponent<Sundial> ();
+
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
+		dayCount = sundial.getDayCount ();
+		float moveSpeed = 0;
+		moveSpeed = (maxMoveSpeed * levelStartRatio) + ((maxMoveSpeed * (1 - levelStartRatio)) / levelScaleToDays)*sundial.getDayCount();
+		if (moveSpeed > maxMoveSpeed)
+		{
+			moveSpeed = maxMoveSpeed;
+		}
+		interpSpeed = moveSpeed / Vector3.Distance(originalPosition, target);
 		lifeTime += Time.deltaTime;
 		u += interpSpeed * Time.deltaTime;
 		

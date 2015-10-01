@@ -18,6 +18,13 @@ public class Enemy : MonoBehaviour
 	private GameObject SF_hunterRunawayObj;
 	private GameObject SF_hunterChaseObj;
 	private float screamTimer = 0;
+	private int levelScaleToDays;
+	private float levelStartRatio;
+	private int dayCount;
+	private float walkSpeed = 0;
+	private float runSpeed =0;
+	private float screenWidth;
+	private float screenHeight;
 
 	public GameController gameController;
 	public GameObject player;
@@ -25,8 +32,8 @@ public class Enemy : MonoBehaviour
 	public float detectionRadius;
 	public float attackDelay;
 	public float maxChaseTime;
-	public float runSpeed;
-	public float walkSpeed;
+	public float maxRunSpeed;
+	public float maxWalkSpeed;
 	public float minWanderRange;
 	public float maxWanderRange;
 	public float minIdleTime;
@@ -50,12 +57,33 @@ public class Enemy : MonoBehaviour
 		SF_hunterChase = SF_hunterChaseObj.GetComponent<AudioSource>();		
 		alertBox = this.transform.FindChild("Alert").gameObject;
 		ahhhBox = this.transform.FindChild("Ahhh").gameObject;
+		levelScaleToDays = gameController.getLevelScale ();
+		levelStartRatio = gameController.getLevelStartRatio ();
+		dayCount = sundial.getDayCount ();
+		walkSpeed = (maxWalkSpeed * levelStartRatio) + ((maxWalkSpeed * (1 - levelStartRatio)) / levelScaleToDays) * sundial.getDayCount ();
+		runSpeed = (maxRunSpeed * levelStartRatio) + ((maxRunSpeed * (1 - levelStartRatio)) / levelScaleToDays) * sundial.getDayCount ();
 
+		screenHeight = Camera.main.orthographicSize;
+		screenWidth = Camera.main.aspect * screenHeight;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		if (sundial.getDayCount () > dayCount) {
+			dayCount = sundial.getDayCount ();
+
+			runSpeed = (maxRunSpeed * levelStartRatio) + ((maxRunSpeed * (1 - levelStartRatio)) / levelScaleToDays) * sundial.getDayCount ();
+			if (runSpeed > maxRunSpeed) {
+				runSpeed = maxRunSpeed;
+			}
+
+			walkSpeed = (maxWalkSpeed * levelStartRatio) + ((maxWalkSpeed * (1 - levelStartRatio)) / levelScaleToDays) * sundial.getDayCount ();
+			if (walkSpeed > maxWalkSpeed) {
+				walkSpeed = maxWalkSpeed;
+			}
+		}
+
 		attackTimer += Time.deltaTime;
 		screamTimer += Time.deltaTime;
 		
@@ -106,7 +134,7 @@ public class Enemy : MonoBehaviour
 					// TODO: Limit running to within the screen boundary?
 					alertBox.SetActive(false);
 					ahhhBox.SetActive(true);
-					goal = (2.0f * transform.position) - player.transform.position;
+					goal = 0.75f*(transform.position - player.transform.position) + transform.position;
 				}
 				
 				currentSpeed = runSpeed;
@@ -123,9 +151,7 @@ public class Enemy : MonoBehaviour
 					// find a random point within wander range (higher chance to move toward center of map the further out this is)
 					//float wanderDistance = Random.Range(minWanderRange, maxWanderRange);
 					
-					float screenWidth, screenHeight;
-					screenHeight = Camera.main.orthographicSize;
-					screenWidth = Camera.main.aspect * screenHeight;
+
 
 					goal.x = Random.Range(-screenWidth,screenWidth);
 					goal.y = Random.Range(-screenHeight, screenHeight);
@@ -206,6 +232,7 @@ public class Enemy : MonoBehaviour
 			}
 			else // must be walking
 			{
+
 				currentSpeed = walkSpeed;
 			}
 			
