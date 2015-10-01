@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     public int carrots = 0;
     public int hunters = 0;
     public bool lifeAvailable = true;
+	public int levelScaleToDays = 10;
+	public float levelStartRatio = 0.6f;
 
     public Text txtDayCount;
     public Text txtGameOver;
@@ -49,7 +51,9 @@ public class GameController : MonoBehaviour
             Advertisement.Initialize(appID, false);
         }
         googlePlayObj = GameObject.Find("GooglePlay");
-        googlePlayScript = googlePlayObj.GetComponent<Googleplay>();
+		if (googlePlayObj != null) {
+			googlePlayScript = googlePlayObj.GetComponent<Googleplay> ();
+		}
     }
 
     // Update is called once per physics time unit
@@ -87,57 +91,67 @@ public class GameController : MonoBehaviour
         {
             preCarrots = carrots;
             carrotsCount.text = carrots.ToString();
-            if (googlePlayScript.ReturnSignInStatus() == true)
-            {
-                googlePlayScript.CarrotsAchievement(carrots);
-            }
+			if (googlePlayScript != null)
+			{
+	            if (googlePlayScript.ReturnSignInStatus() == true)
+	            {
+	                googlePlayScript.CarrotsAchievement(carrots);
+	            }
+			}
         }
         if (preHunters != hunters)
         {
             preHunters = hunters;
             huntersCount.text = hunters.ToString();
-            if (googlePlayScript.ReturnSignInStatus() == true)
-            {
-                googlePlayScript.HunterAchievement(hunters);
-            }
+			if (googlePlayScript != null)
+			{
+	            if (googlePlayScript.ReturnSignInStatus() == true)
+	            {
+	                googlePlayScript.HunterAchievement(hunters);
+	            }
+			}
         }
         if (preDay != sundial.day)
         {
             preDay = sundial.day;
-            if (googlePlayScript.ReturnSignInStatus() == true)
-            {
-                googlePlayScript.DaysAchievement(sundial.day);
-            }
+			if (googlePlayScript != null)
+			{
+	            if (googlePlayScript.ReturnSignInStatus() == true)
+	            {
+	                googlePlayScript.DaysAchievement(sundial.day);
+	            }
+			}
         }
 
     }
 
     public void GameOverDisplay()
     {
-        txtCarrots.text = "Carrots: " + carrots;
-        txtDays.text = "Days: " + sundial.day;
-        txtHunters.text = "Hunters: " + hunters;
-        new WaitForSeconds(1.0f);
+		txtCarrots.text = "Carrots: " + carrots;
+		txtDays.text = "Days: " + sundial.day;
+		txtHunters.text = "Hunters: " + hunters;
+		new WaitForSeconds (1.0f);
 
-        gameOverDisplay.SetActive(true);
-        btnPause.gameObject.SetActive(false);
-        if (lifeAvailable)
-        {
-            gameMusic.Pause();
-            btnShowAd.gameObject.SetActive(true);
-        }
-        googlePlayObj = GameObject.Find("GooglePlay");
-        googlePlayScript = googlePlayObj.GetComponent<Googleplay>();
-        if (googlePlayScript.ReturnSignInStatus() == false)
-        {
-            confirmLogin.SetActive(true);
-        }
-        else
-        {
-            googlePlayScript.PostDaySurvived(sundial.day);
-            googlePlayScript.PostCarrotEaten(carrots);
-            googlePlayScript.PostHunterEaten(hunters);
-        }
+		gameOverDisplay.SetActive (true);
+		btnPause.gameObject.SetActive (false);
+		if (lifeAvailable) {
+			gameMusic.Pause ();
+			btnShowAd.gameObject.SetActive (true);
+		}
+		//googlePlayObj = GameObject.Find("GooglePlay");
+		//if (googlePlayObj != null) {
+		//googlePlayScript = googlePlayObj.GetComponent<Googleplay> ();
+		//}
+		if (googlePlayScript != null)
+		{
+			if (googlePlayScript.ReturnSignInStatus () == false) {
+				confirmLogin.SetActive (true);
+			} else {
+				googlePlayScript.PostDaySurvived (sundial.day);
+				googlePlayScript.PostCarrotEaten (carrots);
+				googlePlayScript.PostHunterEaten (hunters);
+			}
+		}
     }
 
     public void HideGameOverDisplay()
@@ -175,9 +189,13 @@ public class GameController : MonoBehaviour
 
     public void ShowRank()
     {
-        googlePlayObj = GameObject.Find("GooglePlay");
-        googlePlayScript = googlePlayObj.GetComponent<Googleplay>();
-        googlePlayScript.ShowLeaderboard();
+        //googlePlayObj = GameObject.Find("GooglePlay");
+		//if (googlePlayObj != null) {
+		//	googlePlayScript = googlePlayObj.GetComponent<Googleplay> ();
+		//}
+		if (googlePlayScript != null) {
+			googlePlayScript.ShowLeaderboard ();
+		}
     }
 
     public IEnumerator Wait()
@@ -187,11 +205,21 @@ public class GameController : MonoBehaviour
 
     public void PostToLeaderboard()
     {
-        googlePlayObj = GameObject.Find("GooglePlay");
-        googlePlayScript = googlePlayObj.GetComponent<Googleplay>();
-        googlePlayScript.PostDaySurvived(sundial.day);
-        googlePlayScript.PostCarrotEaten(carrots);
-        googlePlayScript.PostHunterEaten(hunters);
+        //googlePlayObj = GameObject.Find("GooglePlay");
+       // googlePlayScript = googlePlayObj.GetComponent<Googleplay>();
+		if (googlePlayScript != null) {
+			googlePlayScript.PostDaySurvived (sundial.day);
+			googlePlayScript.PostCarrotEaten (carrots);
+			googlePlayScript.PostHunterEaten (hunters);
+		}
 
     }
+	public int getLevelScale()
+	{
+		return levelScaleToDays;
+	}
+	public float getLevelStartRatio()
+	{
+		return levelStartRatio;
+	}
 }

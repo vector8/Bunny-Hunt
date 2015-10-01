@@ -14,9 +14,13 @@ public class PlayerController : MonoBehaviour
 	private Vector3 prevMoveDirection;
 	private Vector3 targetPosition;
 	private bool dayTimeNow = true;
+	private int levelScaleToDays;
+	private float levelStartRatio;
+	private int day;
+	private float hungerFactor =0;
 
 	public float hunger = 100;
-	public float hungerFactor;
+	public float maxHungerFactor = 5;
 	public float jumpSpeed;
 	public float jumpDuration;
 	public float moveSpeed;
@@ -33,6 +37,10 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		anim = GetComponent<Animator>();
+		levelScaleToDays = gameController.getLevelScale ();
+		levelStartRatio = gameController.getLevelStartRatio ();
+		day = sundial.getDayCount ();
+		hungerFactor = (maxHungerFactor * levelStartRatio) + ((maxHungerFactor * (1 - levelStartRatio)) / levelScaleToDays)*sundial.getDayCount();
 	}
 	
 	// Update is called once per frame
@@ -231,6 +239,15 @@ public class PlayerController : MonoBehaviour
 	{
 		if(hunger > 0)
 		{
+			if (sundial.getDayCount() > day )
+			{
+				day = sundial.getDayCount();
+				hungerFactor = (maxHungerFactor * levelStartRatio) + ((maxHungerFactor * (1 - levelStartRatio)) / levelScaleToDays)*sundial.getDayCount();
+				if (hungerFactor > maxHungerFactor)
+				{
+					hungerFactor = maxHungerFactor;
+				}
+			}
 			hunger -= Time.deltaTime * hungerFactor;
 			if(hunger < 0)
 			{

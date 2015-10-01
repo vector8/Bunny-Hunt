@@ -37,4 +37,9 @@ public class Sundial : MonoBehaviour
 	{
 		return currentTime < 15;
 	}
+
+	public int getDayCount()
+	{
+		return day;
+	}
 }
